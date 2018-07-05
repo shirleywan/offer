@@ -25,6 +25,36 @@ class Solution65 {
         if(root.right != null){midOrder(root.right , list);}
         return list;
     }
+    public TreeNode KthNode(TreeNode pRoot, int k)
+    {
+        if(pRoot == null || k <= 0)
+            return null;
+        TreeNode current = pRoot;
+        TreeNode kNode = null;//用来保存第K个节点
+        int count = 0;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        //中序遍历二叉搜索树
+        while(!stack.isEmpty() || current != null)
+        {
+            while(current!=null) //遍历将左侧节点全部压入栈，得到count=1的节点值
+            {
+                stack.push(current);
+                current = current.left;
+            }
+            if(!stack.isEmpty())
+            {
+                current = stack.pop();//每出栈一个节点让count++;对比count和K的值，第k个节点时跳出循环返回节点，
+                count++;
+                if(count == k)
+                {
+                    kNode = current;
+                    break;
+                }
+                current = current.right;//k>count，则节点一定在current节点右侧，此时栈顶元素大于current.right节点值
+            }
+        }
+        return kNode;
+    }
 
 
 }
@@ -45,6 +75,9 @@ public class KthNode65 {
 //        new Solution65().midOrder(n1,list);
 //        System.out.println(list);
         //验证笨方法解决
-       System.out.println(new Solution65().KthNode1(n1,2).val);
+//       System.out.println(new Solution65().KthNode1(n1,2).val);
+        //验证简便方法
+        System.out.println(new Solution65().KthNode(n1,2).val);
     }
 }
+
