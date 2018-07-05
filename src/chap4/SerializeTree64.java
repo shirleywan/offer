@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.stream.Collector;
+import java.util.*;
 
 /**
  * Created by c84104080 on 2018/7/4.
@@ -43,12 +44,15 @@ class Solution64 {
         return list;
     }
     public TreeNode preOrder(Queue<String> queue){
-        String c = queue.poll();
-        if ( c.equals("#" )) return null;
-        TreeNode node = new TreeNode(Integer.valueOf(c));
-        node.left = preOrder(queue);
-        node.right = preOrder(queue);
-        return node;
+        if(!queue.isEmpty()){
+            String c = queue.poll();
+            if ( c.equals("#")) return null;
+            TreeNode node = new TreeNode(Integer.valueOf(c));
+            node.left = preOrder(queue);
+            node.right = preOrder(queue);
+            return node;
+        }
+        return null;
     }
 
 }
@@ -67,7 +71,11 @@ public class SerializeTree64 {
         ArrayList<Character> list = new ArrayList<Character>();
 //        System.out.println(new Solution64().preOrder(n1,list));
 //        System.out.println(new Solution64().Serialize(n1));
-        String s = "8,6,10,5,7,9,11";
-        System.out.println((new Solution64().Deserialize(s)).val);
+//        String s = "8,6,10,5,7,9,11";
+        String s=new Solution64().Serialize(n1);
+        System.out.println(s);
+        TreeNode node = new Solution64().Deserialize(s);
+        System.out.println( new Solution64().Serialize(node));
+
     }
 }
