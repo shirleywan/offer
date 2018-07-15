@@ -1,6 +1,3 @@
-/**
- * Created by c84104080 on 2018/7/5.
- */
 import java.util.*;
 class Solution66 {
     /**
