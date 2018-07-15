@@ -1,8 +1,4 @@
 import java.util.ArrayList;
-
-/**
- * Created by c84104080 on 2018/7/6.
- */
 import java.util.*;
 
 /**
